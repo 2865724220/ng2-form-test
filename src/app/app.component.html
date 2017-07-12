@@ -1,0 +1,54 @@
+<h1>{{ title }}</h1>
+<h2>My favorite hero is: {{ myHero.name }}</h2>
+<p>Heroes:</p>
+<ul>
+  <li *ngFor="let hero of heroes">
+    {{ hero.name }}
+  </li>
+</ul>
+<p *ngIf="heroes.length > 3">There are many heroes!</p>
+
+<br/>
+<button (click)="onClickMe()">Click me!</button>
+{{ clickMessage }}
+
+<br/><br/>
+Keyup: <input (keyup)="onKey($event)">
+<p>{{ keyUpValues }}</p>
+
+<br/>
+Keyup2: <input #input (keyup)="0">
+<p>{{ input.value }}</p>
+
+Keyup3: <input #box (keyup)="onKey2(box.value)">
+<p>{{ values }}</p>
+
+Enter: <input #box2 (keyup.enter)="onEnter(box2.value)">
+<p>{{ enterValue }}</p>
+
+Blur: <input #box3
+       (keyup.enter)="update(box3.value)"
+       (blur)="update(box3.value)">
+
+<p>{{ blurValue }}</p>
+
+<hr/>
+<div style="margin-top:20px;">
+  <input #newHero
+         (keyup.enter)="addHero(newHero.value)"
+         (blur)="addHero(newHero.value); newHero.value='' ">
+
+  <button (click)="addHero(newHero.value)">Add</button>
+
+  <ul><li *ngFor="let hero of heroesArr">{{hero}}</li></ul>
+</div>
+
+<br/>
+<hr/>
+<!--
+<hero-form></hero-form>
+-->
+
+<a routerLink="/heroForm">Hero Form</a>
+
+<router-outlet></router-outlet>
